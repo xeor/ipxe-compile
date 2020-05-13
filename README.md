@@ -7,10 +7,16 @@ Also see http://ipxe.org/embed
 
 ## how
 
-Building this container makes `/ipxe/src/bin-x86_64-efi/ipxe.efi`, which you can use in your dhcp config as the file to boot.
+Building this container make:
+  * `/ipxe/src/bin-x86_64-efi/ipxe.efi` - for efi to boot ipxe
+    * `chain` section in `embed.ipxe` can be like `chain /main.ipxe`
+  * `/ipxe/src/bin/undionly.kpxe` - for bios
+    * Note that the `chain` section in `embed.ipxe` must contain the protocol, example `chain tftp://10.0.1.5/main.ipxe`..
+
 When it is loaded, it tries to chainload `/main.ipxe`, which is the ipxe file you want to make..
 
 
-## special needs
+## special needs / more info
 
 * http://ipxe.org/appnote/buildtargets
+* https://wiki.fogproject.org/wiki/index.php/IPXE
